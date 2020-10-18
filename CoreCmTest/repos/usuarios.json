@@ -1,0 +1,33 @@
+[
+  {
+    "id": "112569349235716162279",
+    "nombre": "Juan",
+    "apellido": "Molina",
+    "fechaNacimiento": "2019-01-06T17:16:40",
+    "fotoPerfil": {
+      "id": "1",
+      "nombreArchivo": "fotoPerfil.jpg",
+      "tamano": null,
+      "url": "https.asda.com",
+      "tipo": "jpg",
+      "formato": "jpg"
+    },
+    "tipoSexo": 0,
+    "correoElectronico": "juanpahm319@gmail.com",
+    "ciudad": "Manizales",
+    "pais": "Colombia",
+    "rol": 3
+  },
+  {
+    "id": "106059766250170593390",
+    "nombre": "Pedro",
+    "apellido": "Perez",
+    "fechaNacimiento": "2020-09-10T06:23:50.2301714-05:00",
+    "fotoPerfil": null,
+    "tipoSexo": 0,
+    "correoElectronico": "fortvits@gmail.com",
+    "ciudad": "Manizales",
+    "pais": null,
+    "rol": 3
+  }
+]
