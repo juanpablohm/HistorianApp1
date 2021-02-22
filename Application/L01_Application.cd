@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="L01_Application.CtrlAsignarCita">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AsignarCita\CtrlAsignarCita.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L01_Application.Autenticacion.Ctrl_Autenticacion">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Autenticacion\Ctrl_Autenticacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L01_Application.GestionarPerfil.Ctrl_GestionarPerfil">
+    <Position X="5.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GestionarPerfil\Ctrl_GestionarPerfil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L01_Application.RegistrarHistoria.Ctrl_RegistrarHistoria">
+    <Position X="1.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>RegistrarHistoria\Ctrl_RegistrarHistoria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L01_Application.RegistrarSitio.Ctrl_Georeferenciador">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>RegistrarSitio\Ctrl_Georeferenciador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="L01_Application.RegistrarSitio.Ctrl_RegistrarSitio">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAQAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RegistrarSitio\Ctrl_RegistrarSitio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
