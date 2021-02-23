@@ -14,7 +14,7 @@ namespace L01_Application.GestionarPerfil
         /// <summary>
         /// Modifica la información almacenada del usuario identificado con <paramref name="id"/>.
         /// </summary>
-        /// <param name="id">El ID del usuario cuya información se desea modificar. No debe ser <c>null</c>.</param>
+        /// <param name="id">El ID del usuario cuya información se desea modificar. No puede ser <c>null</c>.</param>
         /// <param name="nombre">El nuevo nombre del usuario, o <c>null</c> si se desea conservar el actual.</param>
         /// <param name="apellido">El nuevo apellido del usuario, o <c>null</c> si se desea conservar el
         /// actual.</param>
@@ -30,7 +30,7 @@ namespace L01_Application.GestionarPerfil
         /// <param name="pais">El nuevo país de residencia del usuario, o <c>null</c> si se desea conservar el
         /// actual.</param>
         /// <returns>Un valor booleano indicando si la operación fue exitosa.</returns>
-        /// <exception cref="NullReferenceException">Arrojada cuando <paramref name="id"/> es <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">Arrojada cuando <paramref name="id"/> es <c>null</c>.</exception>
         /// <exception cref="UsuarioException">Arrojada cuando <paramref name="id"/> no corresponde a un usuario
         /// existente.</exception>
         /// <exception cref="ActualizarUsuarioException">Arrojada cuando ocurre un error indeterminado al modificar la
@@ -38,8 +38,9 @@ namespace L01_Application.GestionarPerfil
         public bool actualizarPerfil(string id,string nombre,string apellido,DateTime fechaNac,Multimedia fotoPerfil,
                                     TipoSexo tipoSexo,string correoElectronico,string ciudad,string pais)
         {
-            Usuario usuario = buscarUsuario(id); // FIXME: se debería comprobar que id != null
-                                                 // y que el usuario obtenido != null
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
+            var usuario = buscarUsuario(id) ?? throw new UsuarioException($"El usuario con id=\"{id}\" no existe.");
 
             usuario.nombre = (nombre != null) ? nombre : usuario.nombre;
             usuario.apellido = (apellido != null) ? apellido : usuario.apellido;
