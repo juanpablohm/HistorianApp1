@@ -1,10 +1,8 @@
 ﻿using L01_Domain.SitiosHistoricos;
-using L01_Domain.Usuarios;
 using L03_FakeDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using static L03_FakeDB.TablaSitioHistorico;
 
@@ -25,7 +23,7 @@ namespace L02_Persistence
             List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
 
             SitioHistorico sitio = (from S in sitios where S.nombre == nombre || (S.posicion.latitud == ubicacion.latitud && S.posicion.longitud == ubicacion.longitud) select S).FirstOrDefault();
-            
+
             return sitio;
         }
 

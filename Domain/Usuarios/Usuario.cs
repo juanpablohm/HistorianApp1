@@ -1,8 +1,6 @@
 ﻿using L01_Domain.Common;
 using L01_Domain.Multimedias;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace L01_Domain.Usuarios
 {

@@ -3,13 +3,12 @@ using L03_FakeDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using static L03_FakeDB.TablaUsuario;
 
 namespace L02_Persistence
 {
-    public class RepositorioUsuarioFake:IRepositorioUsuario
+    public class RepositorioUsuarioFake : IRepositorioUsuario
     {
         public Usuario buscarUsuario(string idUsuario)
         {
@@ -34,9 +33,9 @@ namespace L02_Persistence
                 List<AtributosUsuario> usuarios;
                 usuarios = TablaUsuario.getTablaUsuarios();
 
-                for(int i = 0; i < usuarios.Count; i++)
+                for (int i = 0; i < usuarios.Count; i++)
                 {
-                    if(usuarios[i].id == usuario.id)
+                    if (usuarios[i].id == usuario.id)
                     {
                         usuarios[i].nombre = usuario.nombre;
                         usuarios[i].apellido = usuario.apellido;

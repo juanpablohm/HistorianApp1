@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using L01_Domain.Historias;
+﻿using L01_Domain.Historias;
 
 namespace L02_Persistence
 {
