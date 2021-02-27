@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 
 namespace FakeDB
@@ -57,16 +55,16 @@ namespace FakeDB
             {
                 return System.Text.Json.JsonSerializer.Serialize(this);
             }
-                           
+
         }
 
-      
+
         public static void InstanciarPacientes(int numeroPacientes)
         {
             for (int i = 0; i < numeroPacientes; i++)
             {
                 pacientes.Add(new AtributosPaciente(i));
-             
+
             }
         }
 
@@ -84,6 +82,6 @@ namespace FakeDB
             return System.Text.Json.JsonSerializer.Serialize(pacientes, options);
         }
 
-    
-     }
+
+    }
 }

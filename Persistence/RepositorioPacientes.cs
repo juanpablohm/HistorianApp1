@@ -28,9 +28,9 @@ namespace L02_Persistence
             IPacienteCita paciente = pacientes.FirstOrDefault(p => p.DocumentoId == idPaciente);
             if (paciente is null)
             {
-                throw new PacienteNoEncontradoException("El Paciente con Id-->"+idPaciente+", no esta registrado");
+                throw new PacienteNoEncontradoException("El Paciente con Id-->" + idPaciente + ", no esta registrado");
             }
-                 
+
             return paciente;
 
         }

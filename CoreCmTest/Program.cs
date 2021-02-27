@@ -1,14 +1,11 @@
-﻿using L01_Domain.Paciente;
+﻿using L01_Application.Autenticacion;
 using L01_Application.GestionarPerfil;
-using L02_Persistence;
-using System;
-using L01_Domain.Usuarios;
-using L03_FakeDB;
+using L01_Application.RegistrarHistoria;
 using L01_Application.RegistrarSitio;
 using L01_Domain.SitiosHistoricos;
-using System.Globalization;
-using L01_Application.Autenticacion;
-using L01_Application.RegistrarHistoria;
+using L01_Domain.Usuarios;
+using L03_FakeDB;
+using System;
 
 namespace CoreCmTest
 {
@@ -16,7 +13,7 @@ namespace CoreCmTest
     {
         static void Main(string[] args)
         {
-            Autenticar();
+            gestionarPerfil();
         }
 
         public static void registrarSitio()
@@ -183,7 +180,8 @@ namespace CoreCmTest
             catch (UsuarioException ex)
             {
                 Console.WriteLine(ex.Message);
-            }catch(TokenInvalidoException ex)
+            }
+            catch (TokenInvalidoException ex)
             {
                 Console.WriteLine(ex.Message);
             }

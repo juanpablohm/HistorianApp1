@@ -1,12 +1,10 @@
-﻿using L01_Application.Autenticacion;
+using L01_Application.Autenticacion;
 using L01_Application.DTOs;
 using L01_Domain.Common;
 using L01_Domain.Multimedias;
 using L01_Domain.Usuarios;
 using L02_Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace L01_Application.GestionarPerfil
 {

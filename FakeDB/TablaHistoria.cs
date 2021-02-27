@@ -1,8 +1,6 @@
-﻿using L01_Domain.Usuarios;
-using L01_Domain.Multimedias;
+﻿using L01_Domain.Multimedias;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.Json;
 
 namespace L03_FakeDB
@@ -37,7 +35,7 @@ namespace L03_FakeDB
 
         public static String ToJSON()
         {
-            
+
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true

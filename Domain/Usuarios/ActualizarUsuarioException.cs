@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace L01_Domain.Usuarios
 {
@@ -12,7 +10,7 @@ namespace L01_Domain.Usuarios
 
         }
 
-        public ActualizarUsuarioException(string msg): base(msg)
+        public ActualizarUsuarioException(string msg) : base(msg)
         {
 
         }

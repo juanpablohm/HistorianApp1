@@ -1,6 +1,5 @@
 ﻿using L01_Application.GestionarPerfil;
 using L01_Application.RegistrarHistoria;
-using L01_Application.RegistrarSitio;
 using L01_Domain.Usuarios;
 using L03_FakeDB;
 using NUnit.Framework;
@@ -30,8 +29,8 @@ namespace HistorianTest
             TablaUsuario.InstanciarUsuarios(1);
             Usuario usuarioBuscado = controladora.buscarUsuario("10000");
 
-            
-            if(usuarioBuscado != null)
+
+            if (usuarioBuscado != null)
             {
                 DateTime fecha = new DateTime(2020, 08, 08);
                 registrado = new Ctrl_RegistrarHistoria().registrarHistoria("La historia", fecha, "Que lindo dia", null, "10000");

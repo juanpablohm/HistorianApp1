@@ -1,7 +1,5 @@
 ﻿using L01_Application.GestionarPerfil;
-using L01_Application.RegistrarSitio;
 using L01_Domain.Usuarios;
-using L03_FakeDB;
 using NUnit.Framework;
 
 namespace HistorianTest
@@ -12,7 +10,7 @@ namespace HistorianTest
 
         [SetUp]
         public void Setup()
-        {    
+        {
         }
 
         [Test]

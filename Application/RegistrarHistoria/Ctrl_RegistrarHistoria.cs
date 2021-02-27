@@ -1,11 +1,8 @@
 ﻿using L01_Domain.Historias;
 using L01_Domain.Multimedias;
-using L01_Domain.SitiosHistoricos;
-using L01_Domain.Usuarios;
 using L02_Persistence;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace L01_Application.RegistrarHistoria
 {
