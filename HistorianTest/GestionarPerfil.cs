@@ -28,10 +28,26 @@ namespace HistorianTest
         [Test]
         public void actualizarUsuarioExistente()
         {
-            string idUsuario = "10008";
-            Usuario usuario = controlGestionar.buscarUsuario(idUsuario);
-            bool confirmacion = controlGestionar.actualizarPerfil(idUsuario, "edit", "edit", usuario.fechaNacimiento, null, 0, "edit", "edit", "edit");
+            var usuarioDTO = new L01_Application.DTOs.UsuarioDTO()
+            {
+                id = "10008",
+                nombre = "edit",
+                apellido = "edit"
+            };
+            bool confirmacion = controlGestionar.ActualizarPerfil(usuarioDTO);
             Assert.That(confirmacion, Is.True);
+        }
+
+        [Test]
+        public void actualizarUsuarioNoExistente()
+        {
+            var usuarioDTO = new L01_Application.DTOs.UsuarioDTO()
+            {
+                id = "666",
+                nombre = "edit",
+                apellido = "edit"
+            };
+            Assert.Throws<UsuarioException>(() => controlGestionar.ActualizarPerfil(usuarioDTO));
         }
     }
 }

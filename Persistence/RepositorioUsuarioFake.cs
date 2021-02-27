@@ -47,7 +47,7 @@ namespace L02_Persistence
                     }
                 }
             }
-            catch
+            catch // FIXME: corregir este Pokemon Exception Handling
             {
                 throw new ActualizarUsuarioException("Hubo un error al actualizar el perfil");
             }
