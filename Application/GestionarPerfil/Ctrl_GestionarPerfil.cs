@@ -1,4 +1,5 @@
 ﻿using L01_Application.Autenticacion;
+using L01_Application.DTOs;
 using L01_Domain.Common;
 using L01_Domain.Multimedias;
 using L01_Domain.Usuarios;
@@ -12,56 +13,30 @@ namespace L01_Application.GestionarPerfil
     public class Ctrl_GestionarPerfil
     {
         /// <summary>
-        /// Modifica la información almacenada del usuario identificado con <paramref name="id"/>.
+        /// Modifica la información del usuario identificado con <c>usuarioDTO.id</c>, reemplazando los valores de los
+        /// atributos del usuario con los valores del DTO diferentes a <c>null</c>.
         /// </summary>
-        /// <param name="id">El ID del usuario cuya información se desea modificar. No puede ser <c>null</c>.</param>
-        /// <param name="nombre">El nuevo nombre del usuario, o <c>null</c> si se desea conservar el actual.</param>
-        /// <param name="apellido">El nuevo apellido del usuario, o <c>null</c> si se desea conservar el
-        /// actual.</param>
-        /// <param name="fechaNac">La nueva fecha de nacimiento del usuario, o <c>null</c> si se desea conservar la
-        /// actual.</param>
-        /// <param name="fotoPerfil">La nueva foto de perfil del usuario, o <c>null</c> si se desea conservar la
-        /// actual.</param>
-        /// <param name="tipoSexo">El nuevo sexo del usuario, o <c>null</c> si se desea conservar el actual.</param>
-        /// <param name="correoElectronico">El nuevo correo electrónico del usuario, o <c>null</c> si se desea
-        /// conservar el actual.</param>
-        /// <param name="ciudad">La nueva ciudad de residencia del usuario, o <c>null</c> si se desea conservar la
-        /// actual.</param>
-        /// <param name="pais">El nuevo país de residencia del usuario, o <c>null</c> si se desea conservar el
-        /// actual.</param>
+        /// <param name="usuarioDTO">DTO con el ID del usuario cuya información se desea modificar, y los nuevos 
+        /// valores de los atributos que se desean modificar. Si un atributo no se desea modificar, no se debe
+        /// modificar su valor inicial de <c>null</c> en el DTO.</param>
         /// <returns>Un valor booleano indicando si la operación fue exitosa.</returns>
-        /// <exception cref="ArgumentNullException">Arrojada cuando <paramref name="id"/> es <c>null</c>.</exception>
-        /// <exception cref="UsuarioException">Arrojada cuando <paramref name="id"/> no corresponde a un usuario
+        /// <exception cref="ArgumentNullException">Arrojada cuando <c>usuarioDTO.id</c> es <c>null</c>.</exception>
+        /// <exception cref="UsuarioException">Arrojada cuando <c>usuarioDTO.id</c> no corresponde a un usuario
         /// existente.</exception>
         /// <exception cref="ActualizarUsuarioException">Arrojada cuando ocurre un error indeterminado al modificar la
         /// información del usuario.</exception>
-        public bool actualizarPerfil(string id,string nombre,string apellido,DateTime fechaNac,Multimedia fotoPerfil,
-                                    TipoSexo tipoSexo,string correoElectronico,string ciudad,string pais)
+        public bool ActualizarPerfil(DTOs.UsuarioDTO usuarioDTO)
         {
-            if (id == null) throw new ArgumentNullException(nameof(id));
-
+            string id = usuarioDTO.id ?? throw new ArgumentNullException(nameof(usuarioDTO.id));
             var usuario = buscarUsuario(id) ?? throw new UsuarioException($"El usuario con id=\"{id}\" no existe.");
+            usuarioDTO.TransferirDatosA(usuario);
 
-            usuario.nombre = (nombre != null) ? nombre : usuario.nombre;
-            usuario.apellido = (apellido != null) ? apellido : usuario.apellido;
-            usuario.fechaNacimiento = (fechaNac != null) ? fechaNac : usuario.fechaNacimiento;
-            usuario.fotoPerfil = (fotoPerfil != null) ? fotoPerfil : usuario.fotoPerfil;
-            usuario.tipoSexo = (tipoSexo != null) ? tipoSexo : usuario.tipoSexo;
-            usuario.correoElectronico = (correoElectronico != null) ? correoElectronico : usuario.correoElectronico;
-            usuario.ciudad = (ciudad != null) ? ciudad : usuario.ciudad;
-            usuario.pais = (pais != null) ? pais : usuario.pais;
+            IRepositorioUsuario repoU = FabricaRepositoriosUsuarios.CrearRepositorioUsuarios("fake");
+            repoU.actualizarPerfilUsuario(usuario);
 
-            try
-            {
-                IRepositorioUsuario repoU = FabricaRepositoriosUsuarios.CrearRepositorioUsuarios("fake");
-                repoU.actualizarPerfilUsuario(usuario);
-            }
-            catch(ActualizarUsuarioException ex)
-            {
-                throw ex;
-            }
             return true;
         }
+
         public Usuario buscarUsuario(string idUsuario)
         {
             try

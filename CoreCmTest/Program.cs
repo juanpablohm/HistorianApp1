@@ -94,7 +94,13 @@ namespace CoreCmTest
                 Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(usuario));
 
                 //Realizar la actualizacion
-                bool confirmacion = controlGestionar.actualizarPerfil(idUsuario, "edit", "edit", usuario.fechaNacimiento, null, 0, "edit", "edit", "edit");
+                var usuarioDTO = new L01_Application.DTOs.UsuarioDTO()
+                {
+                    id = idUsuario,
+                    nombre = "edit",
+                    apellido = "edit"
+                };
+                bool confirmacion = controlGestionar.ActualizarPerfil(usuarioDTO);
 
                 //Verificar actualizacion
                 Usuario usu = controlGestionar.buscarUsuario(idUsuario);
