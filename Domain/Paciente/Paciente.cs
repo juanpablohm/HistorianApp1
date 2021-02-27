@@ -1,6 +1,5 @@
 ﻿using L01_Domain.Common;
 using System;
-using System.Reflection.Emit;
 
 namespace L01_Domain.Paciente
 {
@@ -28,10 +27,10 @@ namespace L01_Domain.Paciente
         public string Direccion { get; set; }
         public string Departamento { get; set; }
         public string Municipio { get; set; }
-        public EstadoCivil  EstadoCivil { get; set; }
+        public EstadoCivil EstadoCivil { get; set; }
         public string Ocupacion { get; set; }
         public string Religion { get; set; }
-        public GradoEscolaridad GradoEscolaridad{ get; set; }
+        public GradoEscolaridad GradoEscolaridad { get; set; }
         public TipoSanguineo TipoSanguineo { get; set; }
         public string EPS { get; set; }
 

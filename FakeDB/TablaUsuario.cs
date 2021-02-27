@@ -2,8 +2,6 @@
 using L01_Domain.Multimedias;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Text;
 
 namespace L03_FakeDB
 {
@@ -30,7 +28,7 @@ namespace L03_FakeDB
                 nombre = "NombreUsuario " + id;
                 apellido = "ApellidosUsuario " + id;
                 fechaNacimiento = DateTime.Now;
-                fotoPerfil = new Multimedia(""+id, "foto" + id,id + "kb","url/" + id,"imagen","jpg");
+                fotoPerfil = new Multimedia("" + id, "foto" + id, id + "kb", "url/" + id, "imagen", "jpg");
                 tipoSexo = TipoSexo.Hombre;
                 correoElectronico = "usuario" + id + "@historian.com";
                 ciudad = "ciudadUsuario " + id;
@@ -51,7 +49,7 @@ namespace L03_FakeDB
                 usuarios.Add(new AtributosUsuario(i));
             }
         }
-        public static String ToJSON()   
+        public static String ToJSON()
         {
             if (usuarios.Count == 0)
             {

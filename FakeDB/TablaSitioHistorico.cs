@@ -59,7 +59,7 @@ namespace L03_FakeDB
         /// <param name="numeroSitios">Numero de sitios historicos a instanciar</param>
         public static void InstanciarSitios(int numeroSitios)
         {
-            for(int i = 0; i < numeroSitios; i++)
+            for (int i = 0; i < numeroSitios; i++)
             {
                 sitios.Add(new AtributosSitio(Guid.NewGuid().ToString()));
             }

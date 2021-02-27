@@ -3,7 +3,6 @@ using L01_Domain.SitiosHistoricos;
 using L02_Persistence;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace L01_Application.RegistrarSitio
 {
@@ -21,10 +20,8 @@ namespace L01_Application.RegistrarSitio
         public bool registrarSitio(string nombre, string descripcion, List<Multimedia> archivos, string idHistoriador)
         {
             Posicion posicionActual = new Ctrl_Georeferenciador().obtenerUbicacion();
-            bool existe = verificarSitioExistente(nombre, posicionActual);
-            bool archivosCorrectos = verificarArchivos(archivos);
 
-            if (existe == false && archivosCorrectos == true)
+            if (validarDatosNuevoSitio(nombre, posicionActual, archivos))
             {
                 IRepositorioSitioHistorico repoSitio = FabricaRepositorioSitiosHistoricos.CrearRepositorioSitios();
                 SitioHistorico sitio = new SitioHistorico(Guid.NewGuid().ToString(), nombre, descripcion, archivos, 0, null, posicionActual);
@@ -33,6 +30,19 @@ namespace L01_Application.RegistrarSitio
             }
             return false;
         }
+
+        /// <summary>
+        /// Se encarga de rectificar que la información que llega para registrar un nuevo sitio es válida
+        /// </summary>
+        /// <param name="nombre">Nombre del nuevo sitio (No debe existir anteriormente)</param>
+        /// <param name="posicionActual">Posicion del nuevo sitio (No debe existir anteriormente)</param>
+        /// <param name="archivos">Multimedia del sitio historico (debe estar en un formato válido)</param>
+        /// <returns>Valor booleano que indica si se valido o no la inserción del nuevo sitio Histórico</returns>
+        public bool validarDatosNuevoSitio(string nombre, Posicion posicionActual, List<Multimedia> archivos)
+        {
+            return verificarSitioExistente(nombre, posicionActual) && verificarArchivos(archivos);
+        }
+
 
         /// <summary>
         /// Verifica que los archivos enviados esten correctos

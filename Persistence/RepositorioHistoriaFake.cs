@@ -1,15 +1,14 @@
-﻿using System;
+﻿using L01_Domain.Historias;
+using L03_FakeDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using L01_Domain.Historias;
-using L03_FakeDB;
 using static L03_FakeDB.TablaHistoria;
 
 namespace L02_Persistence
 {
-    public class RepositorioHistoriaFake:IRepositorioHistoria
+    public class RepositorioHistoriaFake : IRepositorioHistoria
     {
         /// <summary>
         /// Busca una historia existente
