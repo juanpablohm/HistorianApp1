@@ -28,14 +28,19 @@ namespace HistorianTest
         [Test]
         public void actualizarUsuarioExistente()
         {
-            var usuarioDTO = new L01_Application.DTOs.UsuarioDTO()
-            {
-                id = "10008",
-                nombre = "edit",
-                apellido = "edit"
+            var idUsuario = "10008";
+            var usuario = controlGestionar.buscarUsuario(idUsuario);
+            var nuevoNombre = (usuario.nombre == null || usuario.nombre == "edit") ? "new" : "edit";
+
+            var usuarioDTO = new L01_Application.DTOs.UsuarioDTO() {
+                id = idUsuario,
+                nombre = nuevoNombre
             };
             bool confirmacion = controlGestionar.ActualizarPerfil(usuarioDTO);
-            Assert.That(confirmacion, Is.True);
+            Assert.IsTrue(confirmacion);
+
+            var usuarioModificado = controlGestionar.buscarUsuario(idUsuario);
+            Assert.AreEqual(nuevoNombre, usuarioModificado.nombre);
         }
 
         [Test]
@@ -44,8 +49,7 @@ namespace HistorianTest
             var usuarioDTO = new L01_Application.DTOs.UsuarioDTO()
             {
                 id = "666",
-                nombre = "edit",
-                apellido = "edit"
+                nombre = "edit"
             };
             Assert.Throws<UsuarioException>(() => controlGestionar.ActualizarPerfil(usuarioDTO));
         }
