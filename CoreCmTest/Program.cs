@@ -1,11 +1,14 @@
 ﻿using L01_Application.Autenticacion;
+using L01_Application.DTOs;
 using L01_Application.GestionarPerfil;
+using L01_Application.ObtenerSitiosHistoricos;
 using L01_Application.RegistrarHistoria;
 using L01_Application.RegistrarSitio;
 using L01_Domain.SitiosHistoricos;
 using L01_Domain.Usuarios;
 using L03_FakeDB;
 using System;
+using System.Collections.Generic;
 
 namespace CoreCmTest
 {
@@ -13,9 +16,23 @@ namespace CoreCmTest
     {
         static void Main(string[] args)
         {
-            gestionarPerfil();
+            obtenerSitiosHistoricos();
         }
 
+        public static void obtenerSitiosHistoricos()
+        {
+            L03_FakeDB.TablaSitioHistorico.InstanciarSitios(5);
+            try
+            {
+                Ctrl_SitioHistorico controlSitioHistorico = new Ctrl_SitioHistorico();
+                List<SitioHistoricoDTO> sitiosHistoricos = controlSitioHistorico.getSitiosHistoricos();
+                Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(sitiosHistoricos));
+            }
+            catch (SitioExistenteException ex)
+            {
+                Console.WriteLine("ERROR-->" + ex.Message);
+            }
+        }
         public static void registrarSitio()
         {
             //Generacion de nuevos sitios y de la tabla
@@ -59,7 +76,7 @@ namespace CoreCmTest
 
         public static void gestionarPerfil()
         {
-            /* Test the JSON generetion */
+            /* Test the JSON generation */
             L03_FakeDB.TablaUsuario.InstanciarUsuarios(20);
             String s = L03_FakeDB.TablaUsuario.ToJSON();
             Console.WriteLine(s);

@@ -27,6 +27,15 @@ namespace L02_Persistence
             return sitio;
         }
 
+        public List<SitioHistorico> getSitiosHistoricos()
+        {
+            String jsonString = TablaSitioHistorico.ToJSON();
+
+            List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
+
+            return sitios;
+        }
+
         /// <summary>
         /// Registra un nuevo sitio historico en la tabla de sitios historicos
         /// </summary>
