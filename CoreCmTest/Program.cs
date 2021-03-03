@@ -21,7 +21,6 @@ namespace CoreCmTest
 
         public static void obtenerSitiosHistoricos()
         {
-            L03_FakeDB.TablaSitioHistorico.InstanciarSitios(5);
             try
             {
                 Ctrl_SitioHistorico controlSitioHistorico = new Ctrl_SitioHistorico();

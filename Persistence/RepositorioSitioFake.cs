@@ -29,10 +29,9 @@ namespace L02_Persistence
 
         public List<SitioHistorico> getSitiosHistoricos()
         {
+            TablaSitioHistorico.InstanciarSitios(5);
             String jsonString = TablaSitioHistorico.ToJSON();
-
             List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
-
             return sitios;
         }
 
