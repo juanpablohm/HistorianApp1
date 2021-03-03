@@ -6,7 +6,7 @@ namespace L01_Domain.SitiosHistoricos
     {
         SitioHistorico getSitioHistorico(string nombre, Posicion ubicacion);
         bool registrarSitioHistorico(SitioHistorico sitio);
-
         List<SitioHistorico> getSitiosHistoricos();
+        SitioHistorico getSitioHistoricoById(string id);
     }
 }

@@ -16,7 +16,7 @@ namespace CoreCmTest
     {
         static void Main(string[] args)
         {
-            obtenerSitiosHistoricos();
+            obtenerSitioHistoricoPorId();
         }
 
         public static void obtenerSitiosHistoricos()
@@ -26,6 +26,28 @@ namespace CoreCmTest
                 Ctrl_SitioHistorico controlSitioHistorico = new Ctrl_SitioHistorico();
                 List<SitioHistoricoDTO> sitiosHistoricos = controlSitioHistorico.getSitiosHistoricos();
                 Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(sitiosHistoricos));
+            }
+            catch (SitioExistenteException ex)
+            {
+                Console.WriteLine("ERROR-->" + ex.Message);
+            }
+        }
+
+        public static void obtenerSitioHistoricoPorId()
+        {
+            obtenerSitiosHistoricos();
+
+            /*
+             * Obtener un sitio historico por Id
+             */
+
+            try
+            {
+                Ctrl_SitioHistorico controlSitioHistorico = new Ctrl_SitioHistorico();
+                Console.WriteLine("Indique el id del usuario a buscar: ");
+                String idSitioHistorico = Console.ReadLine();
+                SitioHistoricoDTO sitioHistorico = controlSitioHistorico.getSitioHistorico(idSitioHistorico);
+                Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(sitioHistorico));
             }
             catch (SitioExistenteException ex)
             {

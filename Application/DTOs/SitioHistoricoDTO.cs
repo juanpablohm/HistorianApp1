@@ -18,9 +18,9 @@ namespace L01_Application.DTOs
         /// Realiza un mapeo a cada item de la lista entrante para convertirlo en una lista de 
         /// sitiosHistoricoDTO (Data Transfer Object)
         /// </summary>
-        /// <param name="sitiosHistoricos"></param>
+        /// <param name="sitiosHistoricos">Lista a mapear como DTO's</param>
         /// <returns>Retorna una lista de objetos de la clase SitioHistoricoDTO</returns>
-        public static List<SitioHistoricoDTO> MapperToDTO(List<SitioHistorico> sitiosHistoricos)
+        public static List<SitioHistoricoDTO> MapperListToDTO(List<SitioHistorico> sitiosHistoricos)
         {
             List<SitioHistoricoDTO> sitiosHistoricosDTOs = new List<SitioHistoricoDTO>();
             foreach(SitioHistorico sitioHistorico in sitiosHistoricos){
@@ -35,6 +35,26 @@ namespace L01_Application.DTOs
                 sitiosHistoricosDTOs.Add(sitioHistoricoDTO);
             }
             return sitiosHistoricosDTOs;
+        }
+
+
+        /// <summary>
+        /// Realiza un mapeo al item entrante para convertirlo en un 
+        /// sitiosHistoricoDTO (Data Transfer Object)
+        /// </summary>
+        /// <param name="sitioHistorico">Objeto a mapear como DTO</param>
+        /// <returns>Retorna un objeto de la clase SitioHistoricoDTO</returns>
+        public static SitioHistoricoDTO MapperOneToDTO(SitioHistorico sitioHistorico)
+        {
+            SitioHistoricoDTO sitioHistoricoDTO = new SitioHistoricoDTO();
+
+            sitioHistoricoDTO.id = sitioHistorico.id;
+            sitioHistoricoDTO.nombre = sitioHistorico.nombre;
+            sitioHistoricoDTO.descripcion = sitioHistorico.descripcion;
+            sitioHistoricoDTO.contenidoMultimedia = sitioHistorico.contenidoMultimedia;
+            sitioHistoricoDTO.posicion = sitioHistorico.posicion;
+
+            return sitioHistoricoDTO;
         }
     }
 }

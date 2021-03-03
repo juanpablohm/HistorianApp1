@@ -27,6 +27,22 @@ namespace L02_Persistence
             return sitio;
         }
 
+        /// <summary>
+        /// Obtiene el sitio historico solicitado
+        /// </summary>
+        /// <param name="id">Id del sitio historico a buscar</param>
+        /// <returns>Retorna el sitio historico si existe, sino retorna null</returns>
+        public SitioHistorico getSitioHistoricoById(string id)
+        {
+            String jsonString = TablaSitioHistorico.ToJSON();
+
+            List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
+
+            SitioHistorico sitio = (from S in sitios where S.id == id select S).FirstOrDefault();
+
+            return sitio;
+        }
+
         public List<SitioHistorico> getSitiosHistoricos()
         {
             TablaSitioHistorico.InstanciarSitios(5);
