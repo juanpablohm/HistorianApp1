@@ -9,6 +9,7 @@ using L01_Domain.Usuarios;
 using L03_FakeDB;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace CoreCmTest
 {
@@ -25,7 +26,8 @@ namespace CoreCmTest
             {
                 Ctrl_SitioHistorico controlSitioHistorico = new Ctrl_SitioHistorico();
                 List<SitioHistoricoDTO> sitiosHistoricos = controlSitioHistorico.getSitiosHistoricos();
-                Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(sitiosHistoricos));
+                Console.WriteLine(JsonSerializer.Serialize(
+                    sitiosHistoricos, new JsonSerializerOptions() { WriteIndented = true }));
             }
             catch (SitioExistenteException ex)
             {
@@ -47,7 +49,8 @@ namespace CoreCmTest
                 Console.WriteLine("Indique el id del usuario a buscar: ");
                 String idSitioHistorico = Console.ReadLine();
                 SitioHistoricoDTO sitioHistorico = controlSitioHistorico.getSitioHistorico(idSitioHistorico);
-                Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(sitioHistorico));
+                Console.WriteLine(JsonSerializer.Serialize(
+                    sitioHistorico, new JsonSerializerOptions() { WriteIndented = true }));
             }
             catch (SitioExistenteException ex)
             {

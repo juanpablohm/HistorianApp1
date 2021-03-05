@@ -33,7 +33,8 @@ namespace L01_Application.ObtenerSitiosHistoricos
         public SitioHistoricoDTO getSitioHistorico(string id)
         {
             IRepositorioSitioHistorico repoU = FabricaRepositorioSitiosHistoricos.CrearRepositorioSitios();
-            SitioHistorico sitioHistorico = repoU.getSitioHistoricoById(id) ?? throw new SitioHistoricoException($"El Sitio Historico con id=\"{id}\" no existe."); ;
+            SitioHistorico sitioHistorico = repoU.getSitioHistoricoById(id)
+                ?? throw new SitioHistoricoException($"El Sitio Historico con id=\"{id}\" no existe.");
 
             SitioHistoricoDTO sitioHistoricoDTO = SitioHistoricoDTO.MapperOneToDTO(sitioHistorico);
             return sitioHistoricoDTO;

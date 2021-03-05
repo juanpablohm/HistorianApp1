@@ -61,7 +61,7 @@ namespace L03_FakeDB
         {
             for (int i = 0; i < numeroSitios; i++)
             {
-                sitios.Add(new AtributosSitio(Guid.NewGuid().ToString()));
+                sitios.Add(new AtributosSitio(i.ToString()));
             }
         }
 

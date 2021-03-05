@@ -10,6 +10,11 @@ namespace L02_Persistence
 {
     public class RepositorioSitioFake : IRepositorioSitioHistorico
     {
+        public RepositorioSitioFake()
+        {
+            TablaSitioHistorico.InstanciarSitios(5); // para tener datos con que trabajar
+        }
+
         /// <summary>
         /// Obtiene el sitio historico solicitado
         /// </summary>
@@ -45,7 +50,6 @@ namespace L02_Persistence
 
         public List<SitioHistorico> getSitiosHistoricos()
         {
-            TablaSitioHistorico.InstanciarSitios(5);
             String jsonString = TablaSitioHistorico.ToJSON();
             List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
             return sitios;
