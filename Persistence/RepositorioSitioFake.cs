@@ -10,6 +10,11 @@ namespace L02_Persistence
 {
     public class RepositorioSitioFake : IRepositorioSitioHistorico
     {
+        public RepositorioSitioFake()
+        {
+            TablaSitioHistorico.InstanciarSitios(5); // para tener datos con que trabajar
+        }
+
         /// <summary>
         /// Obtiene el sitio historico solicitado
         /// </summary>
@@ -25,6 +30,29 @@ namespace L02_Persistence
             SitioHistorico sitio = (from S in sitios where S.nombre == nombre || (S.posicion.latitud == ubicacion.latitud && S.posicion.longitud == ubicacion.longitud) select S).FirstOrDefault();
 
             return sitio;
+        }
+
+        /// <summary>
+        /// Obtiene el sitio historico solicitado
+        /// </summary>
+        /// <param name="id">Id del sitio historico a buscar</param>
+        /// <returns>Retorna el sitio historico si existe, sino retorna null</returns>
+        public SitioHistorico getSitioHistoricoById(string id)
+        {
+            String jsonString = TablaSitioHistorico.ToJSON();
+
+            List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
+
+            SitioHistorico sitio = (from S in sitios where S.id == id select S).FirstOrDefault();
+
+            return sitio;
+        }
+
+        public List<SitioHistorico> getSitiosHistoricos()
+        {
+            String jsonString = TablaSitioHistorico.ToJSON();
+            List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
+            return sitios;
         }
 
         /// <summary>

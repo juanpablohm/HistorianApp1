@@ -1,11 +1,15 @@
 ﻿using L01_Application.Autenticacion;
+using L01_Application.DTOs;
 using L01_Application.GestionarPerfil;
+using L01_Application.ObtenerSitiosHistoricos;
 using L01_Application.RegistrarHistoria;
 using L01_Application.RegistrarSitio;
 using L01_Domain.SitiosHistoricos;
 using L01_Domain.Usuarios;
 using L03_FakeDB;
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace CoreCmTest
 {
@@ -13,9 +17,46 @@ namespace CoreCmTest
     {
         static void Main(string[] args)
         {
-            gestionarPerfil();
+            obtenerSitioHistoricoPorId();
         }
 
+        public static void obtenerSitiosHistoricos()
+        {
+            try
+            {
+                Ctrl_SitioHistorico controlSitioHistorico = new Ctrl_SitioHistorico();
+                List<SitioHistoricoDTO> sitiosHistoricos = controlSitioHistorico.getSitiosHistoricos();
+                Console.WriteLine(JsonSerializer.Serialize(
+                    sitiosHistoricos, new JsonSerializerOptions() { WriteIndented = true }));
+            }
+            catch (SitioExistenteException ex)
+            {
+                Console.WriteLine("ERROR-->" + ex.Message);
+            }
+        }
+
+        public static void obtenerSitioHistoricoPorId()
+        {
+            obtenerSitiosHistoricos();
+
+            /*
+             * Obtener un sitio historico por Id
+             */
+
+            try
+            {
+                Ctrl_SitioHistorico controlSitioHistorico = new Ctrl_SitioHistorico();
+                Console.WriteLine("Indique el id del usuario a buscar: ");
+                String idSitioHistorico = Console.ReadLine();
+                SitioHistoricoDTO sitioHistorico = controlSitioHistorico.getSitioHistorico(idSitioHistorico);
+                Console.WriteLine(JsonSerializer.Serialize(
+                    sitioHistorico, new JsonSerializerOptions() { WriteIndented = true }));
+            }
+            catch (SitioExistenteException ex)
+            {
+                Console.WriteLine("ERROR-->" + ex.Message);
+            }
+        }
         public static void registrarSitio()
         {
             //Generacion de nuevos sitios y de la tabla
@@ -59,7 +100,7 @@ namespace CoreCmTest
 
         public static void gestionarPerfil()
         {
-            /* Test the JSON generetion */
+            /* Test the JSON generation */
             L03_FakeDB.TablaUsuario.InstanciarUsuarios(20);
             String s = L03_FakeDB.TablaUsuario.ToJSON();
             Console.WriteLine(s);
