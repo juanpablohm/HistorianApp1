@@ -1,4 +1,5 @@
 using L01_Application.RegistrarSitio;
+using L01_Domain.Multimedias;
 using L01_Domain.SitiosHistoricos;
 using L03_FakeDB;
 using NUnit.Framework;
@@ -41,10 +42,35 @@ namespace HistorianTest
         [Test]
         public void registrarNuevoSitio()
         {
-            string nombreNuevoSitio = "Catedral";
-            Posicion posicionBuscar = new Posicion("", 1, 1, "Direccion");
-            bool registrado = new Ctrl_RegistrarSitio().registrarSitio(nombreNuevoSitio, "Descripcion", null, "idHistoriador");
-            Assert.That(() => new Ctrl_RegistrarSitio().verificarSitioExistente(nombreNuevoSitio, posicionBuscar), Throws.TypeOf<SitioExistenteException>(), "El sitio historico no fue registrado");
+            Ctrl_RegistrarSitio controlador = new Ctrl_RegistrarSitio();
+            string nombreNuevoSitio = "Louvre";
+            string descripcionNuevoSitio = "Artes";
+            string idHistoriador = "1033";
+   
+            bool registrado = controlador.registrarSitio(nombreNuevoSitio,descripcionNuevoSitio, null, idHistoriador);
+
+            Assert.IsTrue(registrado);
+
+            var SitioNuevo = controlador.buscarSitioPorNombre(nombreNuevoSitio);
+
+            Assert.AreEqual(nombreNuevoSitio, SitioNuevo.nombre);
+            Assert.AreEqual(descripcionNuevoSitio, SitioNuevo.descripcion);
+            Assert.AreEqual(idHistoriador, SitioNuevo.idHistoriador);
+      
+        }
+        
+        [Test]
+        public void registrarSitioYaExistente()
+        {
+            Ctrl_RegistrarSitio controlador = new Ctrl_RegistrarSitio();
+
+            string nombreNuevoSitio = "SanAgustin";
+            string descripcionNuevoSitio = "Religion";
+            string idHistoriador = "1034";
+
+            controlador.registrarSitio(nombreNuevoSitio, descripcionNuevoSitio, null, idHistoriador);
+            Assert.That(() => controlador.registrarSitio(nombreNuevoSitio, descripcionNuevoSitio, null, idHistoriador), 
+                Throws.TypeOf<SitioExistenteException>());
         }
     }
 }

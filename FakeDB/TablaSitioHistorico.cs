@@ -21,6 +21,8 @@ namespace L03_FakeDB
             public List<Historia> historias { get; set; }
             public Posicion posicion { get; set; }
 
+            public string idHistoriador { get; set; }
+
             /// <summary>
             /// Instancia un nuevo sitio historico
             /// </summary>
@@ -35,9 +37,10 @@ namespace L03_FakeDB
                 validez = random.Next(0, 10);
                 historias = new List<Historia>();
                 posicion = new Posicion(Guid.NewGuid().ToString(), random.Next(1, 10), random.Next(1, 10), "Direccion de la posicion");
+                idHistoriador = "1033";
             }
 
-            public AtributosSitio(string id, string nombre, string descripcion, List<Multimedia> contenidoMultimedia, float validez, List<Historia> historias, Posicion posicion) : this(id)
+            public AtributosSitio(string id, string nombre, string descripcion, List<Multimedia> contenidoMultimedia, float validez, List<Historia> historias, Posicion posicion, string idHistoriador) : this(id)
             {
                 this.nombre = nombre;
                 this.descripcion = descripcion;
@@ -45,6 +48,7 @@ namespace L03_FakeDB
                 this.validez = validez;
                 this.historias = historias;
                 this.posicion = posicion;
+                this.idHistoriador = idHistoriador;
             }
 
             public string ToJSON()

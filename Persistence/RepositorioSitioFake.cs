@@ -16,13 +16,13 @@ namespace L02_Persistence
         /// <param name="nombre">Nombre del sitio historico a buscar</param>
         /// <param name="ubicacion">Ubicacion del sitio historico a buscar</param>
         /// <returns>Retorna el sitio historico si existe, sino retorna null</returns>
-        public SitioHistorico getSitioHistorico(string nombre, Posicion ubicacion)
+        public SitioHistorico getSitioHistoricoByName(string nombre)
         {
             String jsonString = TablaSitioHistorico.ToJSON();
 
             List<SitioHistorico> sitios = JsonSerializer.Deserialize<List<SitioHistorico>>(jsonString);
 
-            SitioHistorico sitio = (from S in sitios where S.nombre == nombre || (S.posicion.latitud == ubicacion.latitud && S.posicion.longitud == ubicacion.longitud) select S).FirstOrDefault();
+            SitioHistorico sitio = (from S in sitios where S.nombre == nombre  select S).FirstOrDefault();
 
             return sitio;
         }
@@ -35,7 +35,7 @@ namespace L02_Persistence
         public bool registrarSitioHistorico(SitioHistorico sitio)
         {
             List<AtributosSitio> sitios = TablaSitioHistorico.getTablaSitios();
-            AtributosSitio sitioNuevo = new AtributosSitio(sitio.id, sitio.nombre, sitio.descripcion, sitio.contenidoMultimedia, sitio.validez, sitio.historias, sitio.posicion);
+            AtributosSitio sitioNuevo = new AtributosSitio(sitio.id, sitio.nombre, sitio.descripcion, sitio.contenidoMultimedia, sitio.validez, sitio.historias, sitio.posicion, sitio.idHistoriador);
             sitios.Add(sitioNuevo);
             return true;
         }

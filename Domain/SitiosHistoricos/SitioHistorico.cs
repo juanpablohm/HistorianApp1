@@ -13,9 +13,10 @@ namespace L01_Domain.SitiosHistoricos
         public float validez { get; set; }
         public List<Historia> historias { get; set; }
         public Posicion posicion { get; set; }
+        public string idHistoriador { get; set; }
 
 
-        public SitioHistorico(string id, string nombre, string descripcion, List<Multimedia> contenidoMultimedia, float validez, List<Historia> historias, Posicion posicion)
+        public SitioHistorico(string id, string nombre, string descripcion, List<Multimedia> contenidoMultimedia, float validez, List<Historia> historias, Posicion posicion,string idHistoriador)
         {
             this.id = id;
             this.nombre = nombre;
@@ -24,6 +25,7 @@ namespace L01_Domain.SitiosHistoricos
             this.validez = validez;
             this.historias = historias;
             this.posicion = posicion;
+            this.idHistoriador = idHistoriador;
         }
 
         public SitioHistorico()

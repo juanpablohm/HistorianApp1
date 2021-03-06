@@ -2,7 +2,7 @@
 {
     public interface IRepositorioSitioHistorico
     {
-        SitioHistorico getSitioHistorico(string nombre, Posicion ubicacion);
+        SitioHistorico getSitioHistoricoByName(string nombre);
         bool registrarSitioHistorico(SitioHistorico sitio);
     }
 }

@@ -24,7 +24,7 @@ namespace L01_Application.RegistrarSitio
             if (validarDatosNuevoSitio(nombre, posicionActual, archivos))
             {
                 IRepositorioSitioHistorico repoSitio = FabricaRepositorioSitiosHistoricos.CrearRepositorioSitios();
-                SitioHistorico sitio = new SitioHistorico(Guid.NewGuid().ToString(), nombre, descripcion, archivos, 0, null, posicionActual);
+                SitioHistorico sitio = new SitioHistorico(Guid.NewGuid().ToString(), nombre, descripcion, archivos, 0, null, posicionActual, idHistoriador);
                 bool registrado = repoSitio.registrarSitioHistorico(sitio);
                 return registrado;
             }
@@ -40,7 +40,7 @@ namespace L01_Application.RegistrarSitio
         /// <returns>Valor booleano que indica si se valido o no la inserción del nuevo sitio Histórico</returns>
         public bool validarDatosNuevoSitio(string nombre, Posicion posicionActual, List<Multimedia> archivos)
         {
-            return verificarSitioExistente(nombre, posicionActual) && verificarArchivos(archivos);
+            return !verificarSitioExistente(nombre, posicionActual) && verificarArchivos(archivos);
         }
 
 
@@ -63,7 +63,7 @@ namespace L01_Application.RegistrarSitio
         public bool verificarSitioExistente(string nombre, Posicion ubicacion)
         {
             IRepositorioSitioHistorico repoSitio = FabricaRepositorioSitiosHistoricos.CrearRepositorioSitios();
-            SitioHistorico sitio = repoSitio.getSitioHistorico(nombre, ubicacion);
+            SitioHistorico sitio = repoSitio.getSitioHistoricoByName(nombre);
 
             if (sitio != null)
             {
@@ -74,5 +74,20 @@ namespace L01_Application.RegistrarSitio
                 return false;
             }
         }
+
+        public SitioHistorico buscarSitioPorNombre(String nombre)
+        {
+            IRepositorioSitioHistorico repoSitio = FabricaRepositorioSitiosHistoricos.CrearRepositorioSitios();
+            SitioHistorico sitio = repoSitio.getSitioHistoricoByName(nombre);
+
+            if(sitio != null)
+            {
+                return sitio;
+            }
+
+            return null;
+        }
+
+        
     }
 }
